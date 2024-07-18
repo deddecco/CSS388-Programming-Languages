@@ -1,0 +1,50 @@
+(define average
+  (lambda (list)
+    (cond
+      ;; list is too short, return false
+      ((null? list) #f) 
+      ((null? (cdr list)) #f) 
+      ((null? (cddr list)) #f) 
+
+
+      ;; check if position 1 is the average of positions 2 and 3
+      ;; check if position 2 is the average of positions 1 and 3
+      ;; check if position 3 is the average of positions 1 and 2
+      ((or (= (car list) (/ (+ (cadr list) (caddr list)) 2))
+           (= (cadr list) (/ (+ (car list) (caddr list)) 2))
+           (= (caddr list) (/ (+ (car list) (cadr list)) 2)))
+       #t
+       ; Found a match in the first 3 elements, return #t
+       )
+
+      ((null? (cdddr list)) #f) ;; does the list have 3 or not-- if it does, then all 3 have been checked,
+      ;; no match has been found, so false should be returned
+
+      ;; if any of the following are true, a match has been found 
+      (else
+       (or (average (cdr list))                  ; Recursively skip the first element and check the rest of the list
+           (average (cons (car list) (cddr list))) ; Recursively skip the second element and check the rest
+           (average ((cons (car list) (cons (cadr list) (cdddr list)))))))))) ; Recursively skip the third element and check the rest
+;; a b c d...
+;; car is a
+;; cdr is b c d...
+;; cadr is b
+;; caddr is c
+;; cons car with cddr is a c d...
+;; cons car with cadr with cdddr is a b d...
+
+
+
+
+
+
+
+
+
+
+
+
+;; car is the first
+;; cdr is the rest
+;; cadr is the first of the rest
+;; caddr is the rest after you chop the first, ignore the new first, and look at what's left 
