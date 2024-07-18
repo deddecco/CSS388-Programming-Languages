@@ -1,0 +1,16 @@
+The solutions to this problem have gotten more elegant with each iteration. In the first, the requirement was to write a similar (but simpler) algorithm in Java; in the second, to write this algorithm in Scheme, and now to write it in Prolog. For the sake of having an equal comparison, I did end up writing this algorithm in Java once I had the Scheme solution. 
+
+Prolog’s solution is particularly elegant and easy to explain because it presents a very concise series of alternatives. Perhaps the only syntactical hangup might be whether alternatives are sought or not once one path becomes non-viable, but other than that, the code is very clear:
+In a list starting ABC…. (stopping, initially, let’s say at XYZ), we check:
+•	If A is the average of BC so ABC is a satisfactory triple
+•	If B is the average of AC so ABC is a satisfactory triple
+•	If C is the average of AB so ABC is a satisfactory triple
+•	If BCDEF….XYZ (the whole list except A) contains a satisfactory triple
+•	If A, followed by CDEFG….XYZ (the whole list except B) contains a satisfactory triple
+•	If AB, followed by DEFG…XYZ (the whole list except C) contains a satisfactory triple
+The bullet points above represent the crux of the algorithm which can be implemented in any language. Still, because Prolog is particularly useful in pattern matching—like looking for these triples—and because of how Prolog’s syntax has been defined, this is very nearly already a working solution. 
+Prolog and Scheme are both languages that, the better you know the syntax, the more easily readable they become since they have lots of syntax/constructs peculiar to them that make them harder to read than, for example, someone who knows Java looking at Python or vice versa. Prolog has relatively few constructs, but not all combinations are necessarily legal, so it seems less orthogonal than Scheme was. 
+Writing in Prolog seems very easy to do since it has relatively few constructs and types of statements. Programmer-written Prolog states facts, sets rules, asserts relationships, and asks questions. How the answers are obtained is abstracted away from the programmer, making Prolog simple to write. 
+Prolog looks a lot cleaner since it has far fewer parentheses than LISP does—I think the maximum nesting depth I got to in my Scheme solution was 8 or 9 parentheses deep, but in this new solution in Prolog, I only needed to go 2 deep. 
+
+
